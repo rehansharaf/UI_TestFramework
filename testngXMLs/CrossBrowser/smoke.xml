@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="GroupTestExecution" thread-count="2" preserve-order="true" parallel="tests">
+    <listeners>
+		<listener class-name="com.marina.utils.ListenerClass" />
+		<listener class-name="com.marina.utils.TestRetryAnalyzerListener" />
+
+	</listeners>
+
+    <test name="RunGroupTestsOnChrome" preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="remote" value="false"/>
+        <parameter name="remoteUrl" value=""/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.marina.tests.Mod_1_login"/>
+
+        </classes>
+    </test>
+    
+    <test name="RunGroupTestsOnFirefox" preserve-order="true">
+         <parameter name="browser" value="firefox"/>
+         <parameter name="remote" value="false"/>
+         <parameter name="remoteUrl" value=""/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <!-- Add more group names here if needed -->
+            </run>
+        </groups>
+        <classes>
+            <class name="com.marina.tests.Mod_2_Product"/>
+
+            <!-- Add more classes if needed -->
+        </classes>
+    </test>
+</suite>

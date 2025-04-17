@@ -1,0 +1,29 @@
+# Ignore build output
+/target/
+*.class
+
+# Ignore IntelliJ IDEA files
+/.idea/
+/*.iml
+
+# Ignore Eclipse files
+/.classpath
+/.project
+/.settings/
+
+# Ignore logs and reports
+/test-output/
+*.log
+*.tmp
+*.html
+
+# Ignore screenshots (optional if stored here)
+*.png
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Maven wrapper (optional)
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
