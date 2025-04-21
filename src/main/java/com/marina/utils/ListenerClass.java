@@ -4,6 +4,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
@@ -19,7 +20,13 @@ public class ListenerClass extends ExtentManager implements ITestListener {
 	public void onTestStart(ITestResult result) {
 
 		extenttest.set(extent.createTest(result.getName()));
+		
+	    String executionType = Boolean.parseBoolean(System.getProperty("remote"))
+	            ? "Remote Execution"
+	            : "Local Execution";
+	    extenttest.get().assignCategory(executionType);
 
+	    extenttest.get().assignCategory(BrowserFactory.browser.get());
 	}
 
 	public void onTestSuccess(ITestResult result) {

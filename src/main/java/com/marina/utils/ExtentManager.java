@@ -34,7 +34,6 @@ public class ExtentManager {
 		extent.setSystemInfo("ProjectName", "Marina");
 		extent.setSystemInfo("Tester", "Automation Team");
 		extent.setSystemInfo("OS", "Windows Server");
-		extent.setSystemInfo("Browser", "Chrome");
 	}
 	public static void endReport() {
 		extent.flush();

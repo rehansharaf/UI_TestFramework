@@ -24,6 +24,9 @@
             ]]>
         </reportName>
         
+        <!-- enable timeline view -->
+        <enableTimeline>true</enableTimeline>
+        
         <!-- For Base64 Attachment Thumbnails -->
         <thumbnailForBase64>true</thumbnailForBase64>
         

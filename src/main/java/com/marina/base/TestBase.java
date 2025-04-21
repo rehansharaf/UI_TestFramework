@@ -57,24 +57,35 @@ public class TestBase {
 		
 	}
 
-	@Parameters({"browser", "remote", "remoteUrl"})
+	@Parameters({"browser", "headless", "remote", "remoteUrl"})
 	@BeforeMethod(alwaysRun = true)
 	public synchronized void browserIntialization(String xmlBrowser,
+												  @Optional("false")String headless,
 												  @Optional("false") String remote,
 												  @Optional("") String remoteUrl) {
 		
 		// Set System property that will be passed through mvn command
-        String browser = System.getProperty("browser");
+        String remoteParam = System.getProperty("remote");
+        String headlessParam = System.getProperty("headless");
         
-        if (browser == null || browser.isEmpty()) {
-            System.setProperty("browser", xmlBrowser); // fallback to testNG xml value
-            browser = System.getProperty("browser");
+        if (remoteParam == null || remoteParam.isEmpty()) {
+            System.setProperty("remote", remote); // fallback to testNG xml value
+            System.setProperty("remoteUrl", remoteUrl);
+            remoteParam = System.getProperty("remote");
+            remoteUrl = System.getProperty("remoteUrl");
         }
+        
+        if(headlessParam == null || remoteParam.isEmpty()) {
+        	
+        	System.setProperty("headless", headless); // fallback to testNG xml value
+        	headlessParam = System.getProperty("headless");
+        }
+       
 
-
-        boolean useRemote = Boolean.parseBoolean(remote);
+        boolean useRemote = Boolean.parseBoolean(remoteParam);
+        boolean useHeadless = Boolean.parseBoolean(headlessParam);
         int maxRetries = Integer.parseInt(prop.getProperty("browserLaunch_maxRetry"));
-        BrowserFactory.getInstance().setDriver(browser, useRemote, remoteUrl, maxRetries);        
+        BrowserFactory.getInstance().setDriver(xmlBrowser, useHeadless, useRemote, remoteUrl, maxRetries);        
 		driver = BrowserFactory.getInstance().getDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(prop.getProperty("implicit_wait_timeout"))));
 		driver.manage().window().maximize();

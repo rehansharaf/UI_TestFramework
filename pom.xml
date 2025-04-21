@@ -143,6 +143,7 @@
 						<suiteXmlFiles>
 							<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 						</suiteXmlFiles>
+						<groups>${groups}</groups>
 						<systemPropertyVariables>
 							<appURL>${project.url}</appURL>
 						</systemPropertyVariables>
@@ -154,38 +155,22 @@
 
 
 	<profiles>
-		<!-- SMOKE Single Browser Profile -->
+		<!-- Single Browser Profile -->
 		<profile>
-			<id>single-smoke</id>
+			<id>single-browser</id>
 			<properties>
-				<suiteXmlFile>testngXMLs/SingleBrowser/smoke.xml</suiteXmlFile>
+				<suiteXmlFile>testngXMLs/single-browser.xml</suiteXmlFile>
 			</properties>
 		</profile>
-		<!-- REGRESSION Single Browser Profile -->
+		<!-- Cross Browser Profile -->
 		<profile>
-			<id>single-regression</id>
+			<id>cross-browser</id>
 			<properties>
-				<suiteXmlFile>testngXMLs/SingleBrowser/regression.xml</suiteXmlFile>
-			</properties>
-		</profile>
-
-
-		<!-- SMOKE Cross Browser Profile -->
-		<profile>
-			<id>cross-smoke</id>
-			<properties>
-				<suiteXmlFile>testngXMLs/CrossBrowser/smoke.xml</suiteXmlFile>
-			</properties>
-		</profile>
-		<!-- REGRESSION Cross Browser Profile -->
-		<profile>
-			<id>cross-regression</id>
-			<properties>
-				<suiteXmlFile>testngXMLs/CrossBrowser/regression.xml</suiteXmlFile>
+				<suiteXmlFile>testngXMLs/cross-browser.xml</suiteXmlFile>
 			</properties>
 		</profile>
 
-		<!-- SMOKE Cross Browser Profile -->
+		<!-- Debug Profile -->
 		<profile>
 			<id>debug</id>
 			<properties>
