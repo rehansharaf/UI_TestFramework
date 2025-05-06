@@ -5,10 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -27,6 +29,15 @@ public class TestBase {
 
 	@BeforeSuite(alwaysRun = true)
 	public synchronized void loadConfig() throws IOException {
+		
+		// Try to get from Maven system property first
+        String groupFromMaven = System.getProperty("groups");
+        if (groupFromMaven != null && !groupFromMaven.trim().isEmpty()) {
+        	System.setProperty("testGroup", groupFromMaven);
+        } else {
+            // Fallback to testng.xml defined group
+            System.setProperty("testGroup", "smoke");
+        }
 
 		FileUtils.cleanDirectory(new File(System.getProperty("user.dir")+"/screenshots"));
 		//FileUtils.cleanDirectory(new File(System.getProperty("user.dir")+"\\test-output"));

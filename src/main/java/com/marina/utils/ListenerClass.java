@@ -20,13 +20,8 @@ public class ListenerClass extends ExtentManager implements ITestListener {
 	public void onTestStart(ITestResult result) {
 
 		extenttest.set(extent.createTest(result.getName()));
-		
-	    String executionType = Boolean.parseBoolean(System.getProperty("remote"))
-	            ? "Remote Execution"
-	            : "Local Execution";
-	    extenttest.get().assignCategory(executionType);
-
 	    extenttest.get().assignCategory(BrowserFactory.browser.get());
+	   
 	}
 
 	public void onTestSuccess(ITestResult result) {

@@ -30,10 +30,18 @@ public class ExtentManager {
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		
-		//extent.setSystemInfo("HostName", "Marina");
-		extent.setSystemInfo("ProjectName", "Marina");
-		extent.setSystemInfo("Tester", "Automation Team");
-		extent.setSystemInfo("OS", "Windows Server");
+		 String executionType = Boolean.parseBoolean(System.getProperty("remote"))
+		            ? "Remote"
+		            : "Local";
+		 
+	
+		extent.setSystemInfo("OS", System.getProperty("os.name")); // e.g., Windows 11
+		extent.setSystemInfo("OS Version", System.getProperty("os.version")); // e.g., 10.0
+		extent.setSystemInfo("Architecture", System.getProperty("os.arch")); // e.g., amd64
+		extent.setSystemInfo("Java Version", System.getProperty("java.version")); // e.g., 17
+		extent.setSystemInfo("Test Type", System.getProperty("testGroup")); // from -Denv or fallback
+		extent.setSystemInfo("Execution Environment", executionType); // from -Denv or fallback
+		
 	}
 	public static void endReport() {
 		extent.flush();
